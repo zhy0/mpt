@@ -110,11 +110,9 @@ def optimize(rets, opt_type, tgt=None):
 
 
 if __name__ == "__main__":
-    stocks = ['SPY', 'TLT', 'MSFT', 'AAPL', 'JNJ', 'JPM', 'GOOG']
+    stocks = ['MSFT', 'AAPL', 'JNJ', 'JPM', 'GOOG']
     df  = get_pct(stocks, '01/01/2014', '31/12/2016')
     x = optimize(df, 'sha')
-    plot_rr(df, True)
-    #print df.corr()
 
     print x
     print get_stats2(df, x)
