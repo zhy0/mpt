@@ -7,7 +7,9 @@ import matplotlib.pyplot as plt
 
 
 def plot_rr(rets, frontier=False):
-
+    """
+    Plot Mean-Variance with Efficient Frontier with matplotlib.
+    """
     ret = rets.mean()*252
     vol = rets.std()*np.sqrt(252)
     for s in ret.index:
@@ -15,7 +17,7 @@ def plot_rr(rets, frontier=False):
         plt.annotate(s, (vol[s], ret[s]))
 
     if not frontier:
-        plt.savefig('scatter.png')
+        plt.savefig('mpt.png')
         return
 
     weights, points = compute_frontier(rets)
@@ -23,10 +25,13 @@ def plot_rr(rets, frontier=False):
 
     plt.scatter(vol, ret, c=sha)
     plt.colorbar()
-    plt.savefig('scatter.png')
+    plt.savefig('mpt.png')
 
 
 def plotly_rr(rets, frontier=False):
+    """
+    Plot Mean-Variance with Efficient Frontier with plotly.
+    """
     ret = rets.mean()*252
     vol = rets.std()*np.sqrt(252)
 
@@ -45,7 +50,6 @@ def plotly_rr(rets, frontier=False):
         for i, x in enumerate(weights):
             for j, s in enumerate(symbols):
                 disptxt[i] += '%s: %0.3f\n' % (s, x[j])
-        #disptxt = ["".join(['%s: %0.3f\n' % (s, x[i]) for i, s in enumerate(symbols)]) for x in weights]
 
         tr = go.Scatter(
             x = vol,
@@ -65,7 +69,7 @@ def plotly_rr(rets, frontier=False):
         yaxis = dict(title="Return"),
     )
     fig = go.Figure(data=data, layout=layout)
-    url = py.plot(fig, filename='testmpt') 
+    url = py.plot(fig, filename='mpt') 
 
     return url
 
