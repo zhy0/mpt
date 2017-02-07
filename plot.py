@@ -6,7 +6,7 @@ import plotly.graph_objs as go
 import matplotlib.pyplot as plt
 
 
-def plot_rr(rets, frontier=False):
+def plot_rr(rets, frontier=True):
     """
     Plot Mean-Variance with Efficient Frontier with matplotlib.
     """
@@ -17,18 +17,20 @@ def plot_rr(rets, frontier=False):
         plt.annotate(s, (vol[s], ret[s]))
 
     if not frontier:
-        plt.savefig('mpt.png')
+        plt.savefig('frontier.png')
         return
 
     weights, points = compute_frontier(rets)
     ret, vol, sha = zip(*points)
 
     plt.scatter(vol, ret, c=sha)
-    plt.colorbar()
-    plt.savefig('mpt.png')
+    plt.colorbar(label='Return/Risk')
+    plt.xlabel('Risk')
+    plt.ylabel('Return')
+    plt.savefig('frontier.png')
 
 
-def plotly_rr(rets, frontier=False):
+def plotly_rr(rets, frontier=True):
     """
     Plot Mean-Variance with Efficient Frontier with plotly.
     """
@@ -75,6 +77,6 @@ def plotly_rr(rets, frontier=False):
 
 
 if __name__ == "__main__":
-    stocks = ['MSFT', 'AAPL', 'JNJ', 'JPM', 'GOOG']
+    stocks = ['MSFT', 'AAPL', 'JNJ', 'JPM', 'GOOG', 'NKE', 'GS', 'MCD']
     df  = get_pct(stocks, '01/01/2014', '31/12/2016')
-    plotly_rr(df, True)
+    plot_rr(df, True)
