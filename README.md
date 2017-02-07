@@ -6,3 +6,6 @@ Simple Modern Portfolio Theory in Python. Uses [pandas-datareader](http://pandas
 
 ### matplotlib
 ![](https://github.com/zhy0/mpt/raw/master/frontier.png)
+
+### Todo:
+- Make it easier to use; maybe rewrite in OOP.
