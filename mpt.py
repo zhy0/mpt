@@ -2,7 +2,7 @@
 
 import numpy as np
 import pandas as pd
-import pandas.io.data as web
+import pandas_datareader.data as web
 from scipy.optimize import minimize
 
 
@@ -116,4 +116,3 @@ if __name__ == "__main__":
 
     print x
     print get_stats2(df, x)
-
